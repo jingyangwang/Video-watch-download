@@ -1,0 +1,163 @@
+package com.example.polymerization.frgment;
+
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.lidroid.xutils.DbUtils;
+import com.lidroid.xutils.DbUtils.DaoConfig;
+import com.lidroid.xutils.exception.DbException;
+import com.shipin.player.gui.video.VideoPlayerActivity;
+import com.videoplayer.bd.R;
+import com.xinyinhe.juheplayer.FileItem;
+import com.xinyinhe.juheplayer.Fragment_adpter;
+import com.xinyinhe.juheplayer.Fragment_list_adpter;
+import com.xinyinhe.juheplayer.bean.DBTable;
+import com.xinyinhe.juheplayer.bean.Data;
+import com.xinyinhe.juheplayer.bean.MyTask;
+
+import android.content.SharedPreferences;
+import android.net.Uri;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.text.format.DateUtils;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
+
+public class Music extends Fragment {
+	private ListView lv;
+	private List<Data>  list;
+	// 参考id [/146834156, /143657394, /144857118, /146742515]
+	private String urlString = "https://player.vimeo.com/video/147356726/config";
+	private ProgressBar probar;
+	private SharedPreferences mSPF;
+	private Data d;
+	private DBTable db;
+	private DbUtils du;
+	
+	@Override
+	@Nullable
+	public View onCreateView(LayoutInflater inflater,
+			@Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		View view=inflater.inflate(R.layout.view2, container, false);
+		mSPF = getActivity().getSharedPreferences("playMovies", getActivity().MODE_WORLD_WRITEABLE);
+		TextView tv=(TextView) view.findViewById(R.id.tv);
+	//	tv.setText("Music");
+		list = new ArrayList<Data>();
+	    lv=(ListView) view.findViewById(R.id.listview);
+	    probar = (ProgressBar) view.findViewById(R.id.fragment_view2_progressBar);
+	    getdata();
+		return view;
+	}
+
+	private void  getdata(){
+//		FileItem fileitem;
+//		for (int i = 0; i < 10; i++) {
+//			 fileitem=new FileItem();
+//			 fileitem.setFrom("youku"+i);
+//			 fileitem.setName("Tbv"+i);
+//			 fileitem.setSize("100m"+i);
+//			 fileitem.setTime("5min"+i);
+//			 list.add(fileitem);
+//		}
+		probar.setVisibility(View.VISIBLE);
+		MyTask myTask = new MyTask(urlString , handler ,getActivity());
+		lv.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				d = list.get(position);
+				
+				du = DbUtils.create(getActivity(),"myhistroy");
+//				DaoConfig config = new DaoConfig(getActivity());
+//				config.setDbName("mydata"); //db名
+//				config.setDbVersion(1);  //db版本
+//				DbUtils du = DbUtils.create(config);//db还有其他的一些构造方法，比如含有更新表版本的监听器的
+				
+				String label = DateUtils.formatDateTime(getActivity(), System.currentTimeMillis(),
+                        DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_ABBREV_ALL);
+				Log.i("dove", label);
+				d.setTime(label);
+//				db = new DBTable(d.getMfrom(), d.getImgbase(), d.getLenght(), d.getTitle(), d.getUrl(), d.getViews(), d.getTime(), d.getType());
+				Log.i("dove", "111111111"+d.toString());
+//				thread.start();
+				try {
+//					du.createTableIfNotExist(Data.class);//创建一个表User
+					Log.i("dove", "2222222");
+					du.save(d);
+					Log.i("dove", "3333333");
+				} catch (DbException e) {
+					// TODO Auto-generated catch block
+					Log.i("dove", "4444444");
+					e.printStackTrace();
+				}
+					
+				String st = "file:///storage/emulated/0/%E6%96%B0%E6%96%87%E4%BB%B6%E5%A4%B9%20(6)/w.3gp";
+				String s = "https://fpdl.vimeocdn.com/vimeo-prod-skyfire-std-us/01/4471/5/147356726/448711187.mp4?token=5665431b_0x5999465cca6afa2db8a35f7a9bff4f8d71b86026";
+				String str = "http://r5---sn-tt17rn76.googlevideo.com/videoplayback?mime=video%2Fwebm&upn=WMopC2nibWE&signature=19986FA17B1122D96A75EEDF81858EAAB6826EAB.4DAFB205290EFFBCAF0F4D5869646BFE0D8480F1&ratebypass=yes&itag=43&ipbits=0&sparams=dur,expire,id,initcwndbps,ip,ipbits,itag,lmt,mime,mm,mn,ms,mv,nh,pl,ratebypass,source,upn&dur=0.000&id=o-AIjVAQTG4cnCxzio88O92VfUn02qd3igOzeb_X0WtlTr&fexp=9407746%2C9408495%2C9408710%2C9416126%2C9416179%2C9417683%2C9420016%2C9420452%2C9422596%2C9422618%2C9423662%2C9423848%2C9424134%2C9424193%2C9424436%2C9425281&lmt=1449393944432175&key=cms1&ip=107.178.195.198&source=youtube&pl=27&expire=1449565994&sver=3&signature=null&req_id=e156c5910dbbfb1a&redirect_counter=2&cms_redirect=yes&mm=30&mn=sn-tt17rn76&ms=nxu&mt=1449544325&mv=m";
+				mSPF.edit().putString("playMovie", st).commit();
+	  		    VideoPlayerActivity.start(getActivity(), Uri.parse(str));
+//				VideoPlayerActivity.start(getActivity(), Uri.parse(list.get(position).getUrl()));
+			}
+		});
+	}
+	
+	
+	Handler handler = new Handler(){
+		@Override
+		public void handleMessage(Message msg) {
+			if(msg.what==1){
+				list = (List<Data>) msg.obj;
+//				FileItem fileitem;
+//				for (int i = 0; i < 10; i++) {
+//					 fileitem=new FileItem();
+//					 fileitem.setFrom("vimeo");
+//					 fileitem.setName(video.getVideo().getTitle());
+//					 fileitem.setSize("10M views");
+//					 fileitem.setTime("02:35");
+//					 fileitem.setImg(video.getVideo().getThumbs().getBase());
+//					 fileitem.setUrl(video.getRequest().getFiles().getProgressive().get(0).getUrl());
+//					 list.add(fileitem);
+////			}
+				Fragment_list_adpter adpter = new Fragment_list_adpter(getActivity(), list);
+			    lv.setAdapter(adpter);
+			    new Handler().postDelayed(new Runnable() {
+					@Override
+					public void run() {
+						probar.setVisibility(View.GONE);
+					}
+				}, 6000);
+			}
+		}
+	};
+	
+	Thread thread = new Thread(){
+		@Override
+		public void run() {
+			try {
+				Log.i("dove", "2222222");
+				du.save(db);
+				Log.i("dove", "33333333");
+			} catch (Exception e) {
+				Log.i("dove", "4444444");
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	};
+	
+}
+
+	
+	

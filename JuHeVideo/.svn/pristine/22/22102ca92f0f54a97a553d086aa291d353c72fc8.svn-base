@@ -1,0 +1,95 @@
+/**
+ * 
+ */
+package com.xinyinhe.juheplayer;
+
+import java.util.List;
+
+import com.videoplayer.bd.R;
+import com.xinyinhe.juheplayer.Fragment_adpter.ViewHolder;
+
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+/**
+ * @author wjy
+ *
+ */
+public class History_adapter extends BaseAdapter {
+private List<FileItem> list;
+private Context context;
+public History_adapter(Context context,List<FileItem> list) {
+	// TODO Auto-generated constructor stub
+	this.context=context;
+	this.list=list;
+}
+	/* (non-Javadoc)
+	 * @see android.widget.Adapter#getCount()
+	 */
+	@Override
+	public int getCount() {
+		// TODO Auto-generated method stub
+		return list.size();
+	}
+
+	/* (non-Javadoc)
+	 * @see android.widget.Adapter#getItem(int)
+	 */
+	@Override
+	public Object getItem(int position) {
+		// TODO Auto-generated method stub
+		return list.get(position);
+	}
+
+	/* (non-Javadoc)
+	 * @see android.widget.Adapter#getItemId(int)
+	 */
+	@Override
+	public long getItemId(int position) {
+		// TODO Auto-generated method stub
+		return position;
+	}
+
+	/* (non-Javadoc)
+	 * @see android.widget.Adapter#getView(int, android.view.View, android.view.ViewGroup)
+	 */
+	@Override
+	public View getView(int position, View convertView, ViewGroup parent) {
+		// TODO Auto-generated method stub
+		Viewhold holder;
+		if(convertView==null){
+			holder = new Viewhold();
+            LayoutInflater inflater=(LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			convertView = inflater.inflate(R.layout.item_video, null);
+			holder.image1=(ImageView) convertView.findViewById(R.id.ml_item_thumbnail);
+			holder.ml_item_title=(TextView) convertView.findViewById(R.id.ml_item_title);
+			holder.item_more=(ImageView) convertView.findViewById(R.id.item_more);
+			holder.ml_item_time=(TextView) convertView.findViewById(R.id.ml_item_time);
+			holder.ml_item_resolution=(TextView) convertView.findViewById(R.id.ml_item_resolution);
+			convertView.setTag(holder);
+		}else{
+			holder=(Viewhold)convertView.getTag();
+		}
+		//holder.tv1.setText("   "+list.get(position)+"    ");
+		//iconBitmap = getPropThumnail(mIconIDs[position]);
+		//holder.mImage.setImageBitmap(iconBitmap);
+		//holder.image1.;
+		holder.ml_item_title.setText(list.get(position).getName());
+		holder.ml_item_time.setText(list.get(position).getTime());
+		holder.ml_item_resolution.setText(list.get(position).getSize());
+		return convertView;
+		
+	}
+	
+
+	
+class Viewhold {
+	TextView tv1,ml_item_title,ml_item_time,ml_item_resolution;
+	ImageView image1,item_more;
+}
+}

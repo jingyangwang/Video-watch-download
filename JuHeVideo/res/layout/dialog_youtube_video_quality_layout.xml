@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mainLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:orientation="vertical"
+    android:padding="5dp" >
+
+    <!-- Title text -->
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="8dp"
+        android:singleLine="true"
+        android:text="Video List"
+        android:textColor="@android:color/white"
+        android:textSize="18sp" />
+
+    <ListView
+        android:id="@+id/quality_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="1dp"
+        android:fastScrollEnabled="true"
+        android:padding="8dp"
+        android:smoothScrollbar="true" />
+
+</LinearLayout>

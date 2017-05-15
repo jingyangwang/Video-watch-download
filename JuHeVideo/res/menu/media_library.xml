@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:vlc="http://schemas.android.com/apk/res-auto" >
+
+    <!--
+         <item
+        android:id="@+id/ml_menu_save"
+        android:icon="@drawable/ic_menu_bookmark_outline_w"
+        android:title="@string/clear_history"
+        android:nextFocusDown="@+id/ml_menu_search"
+        android:visible="false"
+        vlc:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/ml_menu_clean"
+        android:icon="@drawable/ic_trash_normal_w"
+        android:title="@string/clear_history"
+        android:nextFocusDown="@id/ml_menu_search"
+        android:visible="false"
+        vlc:showAsAction="ifRoom" />
+    -->
+
+    <item
+        android:id="@+id/ml_menu_search"
+        android:background="@drawable/selector_item_background"
+        android:icon="@drawable/ic_menu_search"
+        android:nextFocusDown="@id/ml_menu_search"
+        android:title="搜索"
+        vlc:actionViewClass="android.support.v7.widget.SearchView"
+        vlc:showAsAction="always|collapseActionView"/>
+    <!-- android:nextFocusDown="@id/ml_menu_search" -->
+    <!-- android:background="@drawable/selector_item_background1" -->
+    <!-- vlc:showAsAction="always|collapseActionView" -->
+    <item
+        android:id="@+id/ml_menu_dwon"
+        android:icon="@drawable/ic_menu_search"
+        android:title="下载"
+        android:nextFocusDown="@id/ml_menu_dwon"
+        vlc:showAsAction="ifRoom"/>
+    <!--  android:nextFocusDown="@id/ml_menu_last_playlist" -->
+    <!--
+         <item
+        android:title="@string/sortby"
+        android:icon="@drawable/ic_menu_sort"
+        android:id="@+id/ml_menu_sortby"
+        vlc:showAsAction="ifRoom">
+        <menu>
+            <item
+                android:id="@+id/ml_menu_sortby_name"
+                android:title="@string/sortby_name" />
+            <item
+                android:id="@+id/ml_menu_sortby_length"
+                android:title="@string/sortby_length" />
+            <item
+                android:id="@+id/ml_menu_sortby_date"
+                android:title="@string/sortby_date" />
+        </menu>
+    </item>
+    -->
+    <item
+        android:id="@+id/ml_menu_set"
+        android:background="@drawable/selector_item_background"
+        android:icon="@drawable/ic_menu_search"
+        android:nextFocusDown="@id/ml_menu_set"
+        android:title="菜单"
+        vlc:showAsAction="always|collapseActionView">
+        <menu>
+        <!--     <item
+                android:id="@+id/ml_menu_flow"
+                android:title="111"/> -->
+            <!--
+           <item
+        android:id="@+id/ml_menu_edit"
+        android:icon="@drawable/ic_menu_search" />
+            -->
+            <item
+                android:id="@+id/ml_menu_My_Account"
+                android:title="My Account"/>
+            <item
+                android:id="@+id/ml_menu_5Stars"
+                android:icon="@drawable/ic_menu_search"
+                android:title="5-Stars Rating"/>
+         <!--    <item
+                android:id="@+id/search_clear_history"
+                android:icon="@android:drawable/ic_menu_close_clear_cancel"
+                android:title="Check for updates"
+                android:visible="false"/> -->
+              <item
+                android:id="@+id/ml_menu_updates"
+                android:icon="@drawable/ic_menu_search"
+                android:title="Check for updates"/>
+             <item
+                android:id="@+id/ml_menu_about"
+                android:icon="@drawable/ic_menu_search"
+                android:title="About"/>
+        </menu>
+    </item>
+
+</menu>

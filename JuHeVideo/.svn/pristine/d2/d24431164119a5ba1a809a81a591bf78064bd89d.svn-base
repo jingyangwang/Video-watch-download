@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+       <RelativeLayout
+        android:id="@+id/video_layout_item2"
+        android:layout_width="match_parent"
+        android:layout_height="75dip"
+        android:orientation="horizontal"
+       >
+ <!-- android:background="?attr/background_default" -->
+        <ImageView
+            android:id="@+id/ml_item_thumbnail"
+            android:layout_width="120dip"
+            android:layout_height="75dip"
+            android:layout_alignParentLeft="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_launcher"
+          />
+  <!-- android:background="?attr/background_default_darker" --> 
+        <TextView
+            android:id="@+id/ml_item_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@id/ml_item_thumbnail"
+            android:layout_toLeftOf="@+id/item_more"
+            android:layout_above="@+id/ml_item_time"
+            android:layout_alignParentTop="true"
+            android:gravity="center_vertical"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:paddingLeft="12dip"
+            android:fontFamily="sans-serif-light"
+            android:textSize="17sp"
+            android:text="title" />
+<!--  android:textColor="?attr/list_title" -->
+     <!--    <ImageView
+            android:id="@+id/item_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_above="@+id/ml_item_resolution"
+            android:clickable="true"
+            android:src="@drawable/ic_launcher"
+            android:scaleType="fitCenter" /> -->
+           <!--  android:contentDescription="@string/more_actions" -->
+<!--      <ProgressBar
+            android:id="@+id/ml_item_progress"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/ml_item_thumbnail"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="1dp"
+            android:layout_marginRight="10dip"
+            android:layout_marginLeft="10dip"
+            android:visibility="gone"
+            android:paddingBottom="3dip"
+            android:focusable="false"
+            android:indeterminate="false"
+            android:maxHeight="2dip"
+            android:minHeight="2dip"
+           />  -->
+       <!-- android:progressDrawable="?attr/gridview_progressbar"  -->
+
+        <TextView
+            android:id="@+id/ml_item_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/ml_item_thumbnail"
+            android:fontFamily="sans-serif-light"
+            android:gravity="left"
+            android:paddingLeft="12dip"
+            android:text="time"
+            android:textSize="14sp" />
+ 
+          <!--  android:textColor="?attr/list_subtitle" -->
+          <!--    android:layout_above="@id/ml_item_progress" -->
+     <!--    android:textColor="?attr/list_subtitle" -->
+     <!--     android:layout_above="@id/ml_item_progress" -->
+
+        <TextView
+            android:id="@+id/ml_item_resolution"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="84dp"
+            android:fontFamily="sans-serif-light"
+            android:text="size"
+            android:textSize="14sp" />
+        <ImageView  android:id="@+id/item_more"
+            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:src="@drawable/ic_more"
+            android:clickable="true"
+            android:layout_alignParentRight="true"
+            />
+
+    </RelativeLayout>
+
+</LinearLayout>

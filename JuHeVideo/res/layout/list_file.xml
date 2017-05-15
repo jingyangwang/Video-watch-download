@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <!-- <ListView
+        android:id="@+id/lv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="99" >
+    </ListView> -->
+
+    <LinearLayout
+           android:id="@+id/linear_ly"
+           android:layout_width="wrap_content"
+           android:layout_height="40dp"
+           android:gravity="center"
+           android:layout_alignParentBottom="true"
+           android:layout_alignParentLeft="true"
+           android:layout_alignParentRight="true"
+           android:layout_marginLeft="5dp"
+           android:layout_marginRight="5dp" >
+
+           <LinearLayout
+               android:id="@+id/linear_ly1"
+               android:layout_width="wrap_content"
+               android:layout_height="match_parent"
+               android:gravity="center"
+               android:background="@drawable/selector_item_background"
+               android:layout_weight="1">
+               <ImageView
+                android:id="@+id/image1"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_done_all_black_24dp" />
+
+          	<TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:text="ALL" />
+           </LinearLayout>
+
+           <LinearLayout
+               android:id="@+id/linear_ly2"
+               android:layout_width="wrap_content"
+               android:layout_height="match_parent"
+               android:gravity="center"
+               android:background="@drawable/selector_item_background" 
+               android:layout_weight="1">
+               <ImageView
+                android:id="@+id/image1"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_delete_black_24dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:singleLine="true"
+                android:text="Delete" />
+           </LinearLayout>
+		
+           <LinearLayout
+               android:id="@+id/linear_ly3"
+               android:layout_width="wrap_content"
+               android:layout_height="match_parent" 
+               android:gravity="center"
+               android:background="@drawable/selector_item_background"
+               android:layout_weight="1">
+            <ImageView
+                android:id="@+id/image1"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_visibility_off_black_24dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:text="Hide" />
+           </LinearLayout>
+       </LinearLayout>
+
+    <ListView
+        android:id="@+id/lv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/linear_ly"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true" >
+
+    </ListView>
+
+</RelativeLayout>

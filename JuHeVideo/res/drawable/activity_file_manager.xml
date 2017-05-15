@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_title_bar_color"
+    android:id="@+id/root_layout"
+    android:orientation="vertical" >
+    
+    <RelativeLayout
+            android:id="@+id/layout_top"
+        	android:layout_width="fill_parent"
+        	android:layout_height="wrap_content"
+        	android:gravity="center_vertical"
+        	android:minHeight="@dimen/main_title_bar_min_height"
+        	android:background="@color/main_title_bar_color"
+        	 >
+
+        <TextView
+            android:id="@+id/title_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:drawableLeft="@drawable/icon_edit_banner_back"
+            android:drawableStart="@drawable/icon_edit_banner_back"
+            android:gravity="center"
+            android:singleLine="true"
+            android:clickable="true"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="48dp"
+            android:gravity="center"
+            android:text="@string/default_download_location"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold|italic" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/file_path_textview"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/white_f6"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dp"
+        android:singleLine="true"
+        android:textColor="@color/light_black"
+        android:textSize="15sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/line" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical" >
+
+        <ListView
+            android:id="@+id/file_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:drawSelectorOnTop="true" >
+        </ListView>
+
+        <TextView
+            android:id="@+id/file_list_empty"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ellipsize="none"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="@string/list_empty"
+            android:textColor="@color/hint"
+            android:textSize="@dimen/text_size_14sp"
+            android:visibility="gone" >
+        </TextView>
+    </FrameLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/line" />
+
+    <Button
+        android:id="@+id/btn_ok"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/white"
+        android:gravity="center"
+        android:text="@string/save_download_path"
+        android:textColor="@drawable/text_black_color_selector" />
+
+</LinearLayout>

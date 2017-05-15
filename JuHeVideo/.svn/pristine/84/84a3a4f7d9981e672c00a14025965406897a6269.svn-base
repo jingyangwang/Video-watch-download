@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- From: file:/opt/android/vlc/vlc-android/res/values-sw800dp/booleans.xml -->
+    <eat-comment/>
+    <bool name="list_mode">false</bool>
+</resources>

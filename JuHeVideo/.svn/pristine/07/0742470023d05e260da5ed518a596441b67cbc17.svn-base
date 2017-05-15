@@ -1,0 +1,81 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/actmain"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.xinyinhe.juheplayer.MainActivity" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="5" >
+
+        <!--
+        <com.example.polymerization.horizontallistview.HorizontalListView
+            android:id="@+id/horizon_listview"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_weight="4"
+            android:layout_alignParentTop="true" >
+        </com.example.polymerization.horizontallistview.HorizontalListView>
+        -->
+
+        <com.viewpagerindicator.TabPageIndicator
+            android:id="@+id/indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_weight="4"
+            android:background="@drawable/base_action_bar_bg" />
+
+        <ImageView
+            android:id="@+id/image1"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_launcher" />
+    </LinearLayout>
+    <!-- 1125 pop -->
+
+    <LinearLayout
+        android:id="@+id/pop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" 
+        android:visibility="gone">
+
+        <GridView
+            android:id="@+id/pop_gridview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:horizontalSpacing="3dp"
+            android:numColumns="3"
+            android:verticalSpacing="3dp" >
+        </GridView>
+    </LinearLayout>
+    <!-- 1125 pop -->
+    <!--
+        <FrameLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" 
+        android:id="@+id/fra"
+        android:visibility="gone"
+        ></FrameLayout>
+    -->
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" >
+
+        <!--
+        <android.support.v4.view.PagerTabStrip
+            android:id="@+id/tab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+        </android.support.v4.view.PagerTabStrip>
+        -->
+    </android.support.v4.view.ViewPager>
+
+</LinearLayout>

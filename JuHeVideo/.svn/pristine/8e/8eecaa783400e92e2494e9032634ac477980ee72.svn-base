@@ -1,0 +1,170 @@
+/**
+ * 
+ */
+package com.xinyinhe.juheplayer;
+
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.List;
+
+import com.lidroid.xutils.BitmapUtils;
+import com.videoplayer.bd.R;
+import com.xinyinhe.juheplayer.Gridadpter.ViewHolder;
+
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+/**
+ * @author wjy
+ *
+ */
+public class Fragment_list_adpter extends BaseAdapter {
+	private List<FileItem> list;
+	private Context context;
+	private ViewHolder holder;
+	/* (non-Javadoc)
+	 * @see android.widget.Adapter#getCount()
+	 */
+	public Fragment_list_adpter(Context context,List<FileItem> list) {
+		// TODO Auto-generated constructor stub
+		this.list=list;
+		this.context=context;
+	}
+	@Override
+	public int getCount() {
+		// TODO Auto-generated method stub
+		return list.size();
+	}
+
+	/* (non-Javadoc)
+	 * @see android.widget.Adapter#getItem(int)
+	 */
+	@Override
+	public Object getItem(int position) {
+		// TODO Auto-generated method stub
+		return list.get(position);
+	}
+
+	/* (non-Javadoc)
+	 * @see android.widget.Adapter#getItemId(int)
+	 */
+	@Override
+	public long getItemId(int position) {
+		// TODO Auto-generated method stub
+		return position;
+	}
+
+	/* (non-Javadoc)
+	 * @see android.widget.Adapter#getView(int, android.view.View, android.view.ViewGroup)
+	 */
+	@Override
+	public View getView(final int position, View convertView, ViewGroup parent) {
+		// TODO Auto-generated method stub
+		holder = null;
+		if(convertView==null){
+			holder = new ViewHolder();
+            LayoutInflater inflater=(LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			convertView = inflater.inflate(R.layout.movies_list_item, null);
+			holder.bimg = (RelativeLayout) convertView.findViewById(R.id.movies_list_relativeLayout);
+			holder.img = (ImageView)convertView.findViewById(R.id.movies_list_img);
+			holder.from = (TextView)convertView.findViewById(R.id.movies_list_from);
+			holder.size = (TextView) convertView.findViewById(R.id.movies_list_size);
+			holder.time = (TextView)convertView.findViewById(R.id.movies_list_time);
+			holder.name = (TextView) convertView.findViewById(R.id.movies_list_name);
+			convertView.setTag(holder);
+		}else{
+			holder=(ViewHolder)convertView.getTag();
+		}
+		
+		holder.from.setText(list.get(position).getFrom());
+		holder.size.setText(list.get(position).getSize());
+		holder.time.setText(list.get(position).getTime());
+		holder.name.setText(list.get(position).getName());
+		
+//		BitmapUtils bu = new BitmapUtils(context);
+//		bu.display(holder.img, list.get(position).getImg());
+//		URL url;
+//		try {
+//			url = new URL(list.get(position).getImg());
+//			Bitmap bitmap = BitmapFactory.decodeStream(url.openStream());
+//			Drawable background = new BitmapDrawable(bitmap);
+//			holder.img.setBackgroundDrawable(background);
+//			holder.img.setImageBitmap(bitmap);
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		URL url;
+//		try {
+//			url = new URL(list.get(position).getImg());
+//			URLConnection conn = url.openConnection();
+//            conn.connect();
+//            InputStream in = conn.getInputStream();
+//            Log.i("dove", "000000000");
+//            Bitmap map = BitmapFactory.decodeStream(in);
+//		}catch (Exception e) {
+//			Log.i("dove", "1111111111");
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		Log.i("dove", "bbbbbbbb");
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				URL url;
+//				Log.i("dove", "aaaaaaaaaa");
+				try {
+					url = new URL(list.get(position).getImg());
+					URLConnection conn = url.openConnection();
+	                conn.connect();
+	                InputStream in = conn.getInputStream();
+	                Bitmap map = BitmapFactory.decodeStream(in);
+	                Message msg = new Message();
+	                msg.obj = map;
+	                msg.what = position;
+//	                Log.i("dove", "000000000");
+	                handler.sendMessage(msg);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+//					Log.i("dove", "111111111");
+					e.printStackTrace();
+				}
+			}
+		}).start();
+		return convertView;
+		
+		//return null;
+	}
+	class ViewHolder{
+		RelativeLayout bimg;
+		ImageView img;
+		TextView from,name,size,time;
+	}
+	
+	Handler handler = new Handler(){
+		@Override
+		public void handleMessage(Message msg) {
+			Bitmap bm = (Bitmap) msg.obj;
+			Drawable background = new BitmapDrawable(bm);
+//			holder.img.setBackgroundDrawable(background);
+			holder.bimg.setBackground(background);
+//			holder.img.setImageBitmap(bm);
+		}
+	};
+
+}

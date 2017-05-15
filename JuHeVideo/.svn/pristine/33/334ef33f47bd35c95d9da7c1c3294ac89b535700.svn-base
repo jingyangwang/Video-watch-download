@@ -1,0 +1,120 @@
+/**
+ * 
+ */
+package com.xinyinhe.juheplayer;
+
+import java.util.HashMap;
+import java.util.List;
+
+import com.lidroid.xutils.BitmapUtils;
+import com.videoplayer.bd.R;
+import com.xinyinhe.juheplayer.Gridadpter.ViewHolder;
+import com.xinyinhe.juheplayer.vo.Data;
+
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+/**
+ * @author wjy
+ *
+ */
+public class Video_list_adpter extends BaseAdapter {
+	private List<Data> list;
+	private Context context;
+	private LayoutInflater inflater;
+	private HashMap<Integer, RelativeLayout> hmap = null;
+	/* (non-Javadoc)
+	 * @see android.widget.Adapter#getCount()
+	 */
+	public Video_list_adpter(Context context,List<Data> list) {
+		// TODO Auto-generated constructor stub
+		this.list=list;
+		this.context=context;
+		hmap = new HashMap<Integer, RelativeLayout>();
+	}
+	@Override
+	public int getCount() {
+		// TODO Auto-generated method stub
+		return list.size()+3;
+	}
+
+	/* (non-Javadoc)
+	 * @see android.widget.Adapter#getItem(int)
+	 */
+	@Override
+	public Object getItem(int position) {
+		// TODO Auto-generated method stub
+		return list.get(position);
+	}
+
+	/* (non-Javadoc)
+	 * @see android.widget.Adapter#getItemId(int)
+	 */
+	@Override
+	public long getItemId(int position) {
+		// TODO Auto-generated method stub
+		return position;
+	}
+
+	/* (non-Javadoc)
+	 * @see android.widget.Adapter#getView(int, android.view.View, android.view.ViewGroup)
+	 */
+	@Override
+	public View getView(int position, View convertView, ViewGroup parent) {
+		// TODO Auto-generated method stub
+		inflater=(LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		switch (position) {
+		case 0:
+			convertView = inflater.inflate(R.layout.vedio_player_item, null);
+			return convertView;
+		case 1:
+			convertView = inflater.inflate(R.layout.vedio_player_item1, null);
+			return convertView;
+		case 2:
+			convertView = inflater.inflate(R.layout.vedio_player_item2, null);
+			return convertView;
+		}
+		ViewHolder holder;
+		if(position>2){
+			convertView = null;
+		}
+		if(convertView==null){
+			holder = new ViewHolder();
+//            LayoutInflater inflater=(LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			convertView = inflater.inflate(R.layout.movies_list_item, null);
+			holder.img = (ImageView)convertView.findViewById(R.id.movies_list_img);
+			holder.from = (TextView)convertView.findViewById(R.id.movies_list_from);
+			holder.size = (TextView) convertView.findViewById(R.id.movies_list_size);
+			holder.time = (TextView)convertView.findViewById(R.id.movies_list_time);
+			holder.name = (TextView) convertView.findViewById(R.id.movies_list_name);
+			convertView.setTag(holder);
+		}else{
+			holder=(ViewHolder)convertView.getTag();
+		}
+		
+		Data f = list.get(position-3);
+		holder.from.setText(f.getFrom());
+		holder.size.setText(f.getViews());
+		holder.time.setText(f.getLenght());
+		holder.name.setText(f.getTitle());
+		
+		BitmapUtils bu = new BitmapUtils(context);
+		bu.display(holder.img, f.getImgbase());
+
+		return convertView;
+		
+		
+		//return null;
+	}
+	class ViewHolder{
+		ImageView img;
+		TextView from,name,size,time;
+	}
+
+}

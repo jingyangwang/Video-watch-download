@@ -1,0 +1,67 @@
+package com.xinyinhe.juheplayer.vo;
+
+import java.io.Serializable;
+import java.util.List;
+
+public class Data implements Serializable{
+	private String from;
+	private String imgbase;
+	private String lenght;
+	private List<Loaddata> loadurl;
+	private String title;
+	private String url;
+	private String views;
+	
+	
+	public String getFrom() {
+		return from;
+	}
+	public void setFrom(String from) {
+		this.from = from;
+	}
+	public String getImgbase() {
+		return imgbase;
+	}
+	public void setImgbase(String imgbase) {
+		this.imgbase = imgbase;
+	}
+	public String getLenght() {
+		return lenght;
+	}
+	public void setLenght(String lenght) {
+		this.lenght = lenght;
+	}
+	
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	public String getViews() {
+		return views;
+	}
+	public void setViews(String views) {
+		this.views = views;
+	}
+	public List<Loaddata> getLoadurl() {
+		return loadurl;
+	}
+	public void setLoadurl(List<Loaddata> loadurl) {
+		this.loadurl = loadurl;
+	}
+	
+	@Override
+	public String toString() {
+		return "Data [from=" + from + ", imgbase=" + imgbase + ", lenght="
+				+ lenght + ", loadurl=" + loadurl + ", title=" + title
+				+ ", url=" + url + ", views=" + views + "]";
+	}
+	
+}

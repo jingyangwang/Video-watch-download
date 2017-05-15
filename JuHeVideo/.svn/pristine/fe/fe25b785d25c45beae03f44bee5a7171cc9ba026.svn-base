@@ -1,0 +1,8 @@
+package com.xinyinhe.juheplayer.bean;
+
+public class Loaddata {
+	private String mime;//视频格式
+	private String quality;//分辨率
+	private String url;//下载路径
+	private String width;
+}

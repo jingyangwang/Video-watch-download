@@ -1,0 +1,70 @@
+package com.xinyinhe.juheplayer.vo;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
+
+import com.google.gson.Gson;
+
+import android.os.AsyncTask;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
+
+public class MyTask {
+	private String mUrl;
+	private List<User> list;
+	private Handler referenceHandler;
+	
+	public MyTask(String mUrl, Handler referenceHandler) {
+		super();
+		this.mUrl = mUrl;
+		this.referenceHandler = referenceHandler;
+		new VideoTask().execute(mUrl);
+	}
+
+	/*
+	 * 网络异步请求  yukunjin
+	 */
+	class VideoTask extends AsyncTask<String, Integer, VideoConfig>{
+		@Override
+		protected VideoConfig doInBackground(String... params) {
+			HttpClient hc = new DefaultHttpClient();
+			HttpGet get = new HttpGet(params[0]);
+			VideoConfig video = null;
+			try {
+				HttpResponse hr = hc.execute(get);
+				if(hr.getStatusLine().getStatusCode()==200){
+					Log.i("STR", "联网成功！！！");
+					String str = EntityUtils.toString(hr.getEntity(), "utf-8");
+					Gson gson = new Gson();
+//					list = new ArrayList<User>();
+					video = gson.fromJson(str, VideoConfig.class);
+					//Log.i("dove", video.toString());
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return video;
+		}
+	
+		@Override
+		protected void onPostExecute(VideoConfig result) {
+			if(result!=null){
+				Message message = Message.obtain();  
+                message.obj = result;  
+                message.what = 1;  
+				referenceHandler.sendMessage(message);
+			}
+			//适配数据
+		}
+	}	
+		
+}
+

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/main_title_bar_color"
+    android:id="@+id/root_layout"
+     >
+    
+    <RelativeLayout
+            android:id="@+id/layout_top"
+        	android:layout_width="fill_parent"
+        	android:layout_height="wrap_content"
+        	android:gravity="center_vertical"
+        	android:minHeight="@dimen/main_title_bar_min_height"
+        	android:background="@color/main_title_bar_color"
+        	 >
+
+        <TextView
+            android:id="@+id/title_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:drawableLeft="@drawable/icon_edit_banner_back"
+            android:drawableStart="@drawable/icon_edit_banner_back"
+            android:gravity="center"
+            android:singleLine="true"
+            android:clickable="true"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="48dp"
+            android:gravity="center"
+            android:text="@string/default_download_location"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold|italic" />
+
+    </RelativeLayout>
+
+    <LinearLayout 
+       android:layout_width="match_parent"
+    	android:layout_height="match_parent"
+    	android:background="@color/white"
+    	android:padding="20dp"
+    	android:orientation="vertical"
+        >
+    <LinearLayout
+        android:id="@+id/storage_sdcard0_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/memory_bg_selector"
+        android:gravity="center_vertical"
+        android:minHeight="64dp"
+        android:orientation="horizontal"
+        android:padding="5dp" >
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:scaleType="fitXY"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="@string/storage_internal"
+                android:textColor="@color/light_black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/storage_sdcard0_size_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:textColor="@color/light_black"
+                android:textSize="12sp" />
+
+            <com.xyh.video.download.ui.CustomProgressbar
+                android:id="@+id/storage_sdcard0_memery_progressbar"
+                android:layout_width="match_parent"
+                android:layout_height="8dp" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/setting_icon_right" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/storage_sdcard1_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/memory_bg_selector"
+        android:gravity="center_vertical"
+        android:minHeight="64dp"
+        android:orientation="horizontal"
+        android:padding="5dp" >
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:scaleType="fitXY"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="@string/storage_sdcard"
+                android:textColor="@color/light_black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/storage_sdcard1_size_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:textColor="@color/light_black"
+                android:textSize="12sp" />
+
+            <com.xyh.video.download.ui.CustomProgressbar
+                android:id="@+id/storage_sdcard1_memery_progressbar"
+                android:layout_width="match_parent"
+                android:layout_height="8dp" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/setting_icon_right" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/download_path_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:textColor="@color/light_black"
+        android:textSize="16sp" />
+	</LinearLayout>
+</LinearLayout>
